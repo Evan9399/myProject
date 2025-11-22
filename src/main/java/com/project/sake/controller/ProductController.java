@@ -4,17 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.sake.dto.request.ProductRequest;
+import com.project.sake.dto.response.ProductResponse;
 import com.project.sake.entity.Product;
 import com.project.sake.service.ProductService;
 
@@ -42,9 +41,9 @@ public class ProductController {
     }
 
     @GetMapping("find")
-    public List<Product> getMethodName(@RequestParam String param) {
-
-        return productService.findAll();
+    public ResponseEntity<List<ProductResponse>> findAll() {
+        List<ProductResponse> findAll = productService.findAll();
+        return ResponseEntity.ok(findAll);
     }
 
 }

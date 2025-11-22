@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.project.sake.dto.request.ProductRequest;
+import com.project.sake.dto.response.ProductResponse;
 import com.project.sake.entity.Product;
 
 @Service
@@ -38,5 +39,5 @@ public interface ProductService {
      * 
      * @return
      */
-    public List<Product> findAll();
+    public List<ProductResponse> findAll();
 }

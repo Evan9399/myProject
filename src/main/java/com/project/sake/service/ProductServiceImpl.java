@@ -1,11 +1,13 @@
 package com.project.sake.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.sake.dto.request.ProductRequest;
+import com.project.sake.dto.response.ProductResponse;
 import com.project.sake.entity.Product;
 import com.project.sake.repository.ProductRepository;
 
@@ -58,9 +60,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Operation(summary = "產品", description = "查詢所有產品")
     @Override
-    public List<Product> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    public List<ProductResponse> findAll() {
+        List<ProductResponse> result = productRepository.findAll().stream().map(product -> {
+            return new ProductResponse(
+                    product.getName(),
+                    product.getPrice(),
+                    product.getQuantity(), product.getDescription());
+        }).collect(Collectors.toList());
+
+        return result;
     }
 
 }
