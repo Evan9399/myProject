@@ -36,9 +36,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Operation(summary = "產品", description = "更新產品")
     @Override
-    public Product update(Integer id, ProductRequest updateProduct) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Product update(Integer id, ProductRequest req) {
+        Product product = productRepository.findById(id).get();
+        Product update = Product.builder()
+                .id(product.getId())
+                .name(req.getName())
+                .price(req.getPrice())
+                .quantity(req.getQuantity())
+                .description(req.getDescription())
+                .build();
+        return productRepository.save(update);
+
     }
 
     @Operation(summary = "產品", description = "刪除商品")
