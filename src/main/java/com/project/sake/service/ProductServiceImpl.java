@@ -53,9 +53,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Operation(summary = "產品", description = "刪除商品")
     @Override
-    public Product delProduct(ProductRequest deleteProduct) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delProduct'");
+    public void delProduct(Integer id) {
+        productRepository.deleteById(id);
     }
 
     @Operation(summary = "產品", description = "查詢所有產品")

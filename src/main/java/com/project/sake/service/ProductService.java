@@ -32,7 +32,7 @@ public interface ProductService {
      * @param deleteProduct
      * @return
      */
-    public Product delProduct(ProductRequest deleteProduct);
+    public void delProduct(Integer id);
 
     /**
      * 查詢所有商品
