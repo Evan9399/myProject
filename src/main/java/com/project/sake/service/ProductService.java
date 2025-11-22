@@ -1,10 +1,13 @@
-package com.service;
+package com.project.sake.service;
 
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import com.project.sake.dto.request.ProductRequest;
 import com.project.sake.entity.Product;
 
+@Service
 public interface ProductService {
     /**
      * 新增商品

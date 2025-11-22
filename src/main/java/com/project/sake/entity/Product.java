@@ -9,9 +9,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Builder
 @Entity
 @Table(name = "product")
 @Data
@@ -23,19 +25,13 @@ public class Product {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     /**
      * 商品名稱
      */
     @Column(name = "product_name", nullable = false)
     private String name;
-
-    /**
-     * 商品描述
-     */
-    @Column(name = "product_description", nullable = true)
-    private String description;
 
     /**
      * 商品價格
@@ -47,4 +43,11 @@ public class Product {
      */
     @Column(name = "product_quantity", nullable = false)
     private int quantity;
+
+    /**
+     * 商品描述
+     */
+    @Column(name = "product_description", nullable = false)
+    private String description;
+
 }
