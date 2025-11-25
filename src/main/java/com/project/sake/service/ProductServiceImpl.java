@@ -11,6 +11,7 @@ import com.project.sake.dto.response.ProductResponse;
 import com.project.sake.entity.Product;
 import com.project.sake.repository.ProductRepository;
 
+import io.micrometer.core.instrument.Meter.Id;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.Builder;
 
@@ -62,12 +63,25 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductResponse> findAll() {
         List<ProductResponse> result = productRepository.findAll().stream().map(product -> {
             return new ProductResponse(
+                    product.getId(),
                     product.getName(),
                     product.getPrice(),
                     product.getQuantity(), product.getDescription());
         }).collect(Collectors.toList());
 
         return result;
+    }
+
+    @Override
+    public ProductResponse findById(Integer id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("找不到產品"));
+        return ProductResponse.builder()
+                .id(product.getId())
+                .name(product.getName())
+                .price(product.getPrice())
+                .quantity(product.getQuantity())
+                .description(product.getDescription())
+                .build();
     }
 
 }

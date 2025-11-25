@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductResponse {
-
+    private Integer id;
     /**
      * 產品名稱
      */

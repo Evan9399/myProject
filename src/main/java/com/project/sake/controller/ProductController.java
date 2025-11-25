@@ -17,6 +17,7 @@ import com.project.sake.dto.request.ProductRequest;
 import com.project.sake.dto.response.ProductResponse;
 import com.project.sake.entity.Product;
 import com.project.sake.service.ProductService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/product")
@@ -50,6 +51,12 @@ public class ProductController {
     @DeleteMapping("delete/{id}")
     public void delProduct(@PathVariable Integer id) {
         productService.delProduct(id);
+    }
+
+    @GetMapping("findById/{id}")
+    public ResponseEntity<ProductResponse> findProductById(@RequestParam Integer id) {
+        ProductResponse findById = productService.findById(id);
+        return ResponseEntity.ok(findById);
     }
 
 }

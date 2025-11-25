@@ -40,4 +40,6 @@ public interface ProductService {
      * @return
      */
     public List<ProductResponse> findAll();
+
+    public ProductResponse findById(Integer id);
 }
